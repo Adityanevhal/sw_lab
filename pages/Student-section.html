@@ -1,0 +1,139 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <title>LocoLink | Dashboard</title>
+  <link rel="stylesheet" href="../css/style3.css">
+  <link rel="stylesheet" href="https://fonts.googleapis.com/css2?family=Material+Symbols+Outlined" />
+  <style>
+    .job-card {
+      background: rgba(255,255,255,0.9);
+      padding: 15px;
+      margin: 10px 0;
+      border-radius: 10px;
+    }
+    .apply-btn {
+      background: #28a745;
+      color: #fff;
+      padding: 8px 12px;
+      border: none;
+      border-radius: 6px;
+      cursor: pointer;
+    }
+    .apply-btn:hover {
+      background: #1e7e34;
+    }
+  </style>
+</head>
+<body style="background-image: url('../assets/images/1755863042727.jpg'); background-size:cover;">
+
+  <!-- Navbar -->
+  <nav class="navbar">
+    <div class="nav-left">
+      <img src="../assets/images/LocoLinkLogo.jpg" alt="LocoLink Logo" class="logo">
+    </div>
+
+    <div class="search-bar">
+      <span class="material-symbols-outlined search-icon">search</span>
+      <input type="text" placeholder="Search jobs or companies">
+    </div>
+
+    <div class="nav-center">
+      <a href="../index.html">Home</a>
+      <a href="Saved-job.html">Saved Jobs</a>
+      <!-- <a href="#">My Availability</a> -->
+      <a href="#">Settings</a>
+    </div>
+
+    <div class="nav-right">
+      <a href="profile-section.html">Profile</a>
+      <a href="#">Messages</a>
+    </div>
+  </nav>
+
+  <!-- Main Content -->
+  <div class="container">
+    <!-- Left Sidebar -->
+    <aside class="sidebar">
+      <h3>Quick Links</h3>
+      <ul>
+        <li><a href="#">Nearby Jobs</a></li>
+        <li><a href="#">Top Companies</a></li>
+        <li><a href="#">Job Alerts</a></li>
+      </ul>
+    </aside>
+
+    <!-- Center: Jobs Section -->
+    <main class="main-content">
+      <section class="jobs">
+        <h3>Part-Time Jobs Near You</h3>
+        <div id="jobs-container">
+          <!-- Jobs from localStorage will load here -->
+        </div>
+      </section>
+    </main>
+
+    <!-- Right: Profile Section -->
+    <aside class="profile">
+      <h3>Your Profile</h3>
+      <div class="profile-pic">
+        <img src="../assets/images/1_1.jpg" alt="Profile Picture" id="sidebarProfileImg">
+      </div>
+      <h4 id="sidebarProfileName">Aditya Nevhal</h4>
+      <p id="sidebarCollege">YCCE Student | 2nd Year</p>
+      <button class="edit-btn" onclick="window.location.href='edit-profile.html'">Edit Profile</button>
+    </aside>
+  </div>
+
+  <!-- Notifications -->
+  <section class="notifications">
+    <h3>Notifications</h3>
+    <ul>
+      <li>✅ Your application at Local Mart was viewed <span>2h ago</span></li>
+      <li>📢 New job posted: Café Helper – ₹100/hr <span>5h ago</span></li>
+    </ul>
+  </section>
+
+  <script>
+    // Load jobs from localStorage
+    const jobsContainer = document.getElementById("jobs-container");
+    let jobs = JSON.parse(localStorage.getItem("jobs")) || [];
+
+    if (jobs.length === 0) {
+      jobsContainer.innerHTML = "<p>No jobs available right now.</p>";
+    } else {
+      jobs.forEach((job, index) => {
+        const jobCard = document.createElement("div");
+        jobCard.classList.add("job-card");
+        jobCard.innerHTML = `
+          <h4>${job.business} - ${job.title}</h4>
+          <p>${job.day} | ${job.pay}/hr | ${job.distance} km from  ${job.location}</p>
+          <button class="apply-btn" onclick="window.location.href='confirmation.html'">Apply Now</button>
+        `;
+        jobsContainer.appendChild(jobCard);
+      });
+    }
+
+    // Load profile from localStorage (for sidebar profile)
+    window.onload = function() {
+      const savedProfile = JSON.parse(localStorage.getItem("profileData"));
+      const savedImg = localStorage.getItem("profileImage");
+
+      if (savedProfile) {
+        document.getElementById("sidebarProfileName").textContent = savedProfile.name || "Your Name";
+        document.getElementById("sidebarCollege").textContent = savedProfile.college 
+          ? savedProfile.college + " Student" 
+          : "Student";
+      }
+
+      if (savedImg) {
+        document.getElementById("sidebarProfileImg").src = savedImg;
+      }
+    };
+  </script>
+
+</body>
+</html>
+
+

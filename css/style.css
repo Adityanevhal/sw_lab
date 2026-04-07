@@ -1,0 +1,143 @@
+/* Reset */
+* {
+  margin: 0;
+  padding: 0;
+  box-sizing: border-box;
+}
+
+/* Base Styles */
+body {
+  font-family: "Segoe UI", sans-serif;
+  color: #0f180e;
+  min-height: 100vh;
+  background: url("../assets/images/farmer-banner.jpg") no-repeat center / cover;
+  position: relative;
+}
+
+/* Navbar */
+header {
+  width: 100%;
+  padding: 0.7rem 2rem;
+  background: #fff;
+  display: flex;
+  align-items: center;
+  justify-content: space-between;
+  position: fixed;
+  top: 0;
+  left: 0;
+  z-index: 1000;
+  border-bottom: 1px solid #b6b1b1;
+}
+
+header img {
+  height: 60px;
+  width: auto;
+  border-radius: 10px;
+}
+
+header .tagline {
+  font-size: 1.3rem;
+  font-weight: 900;
+  color: #14721a;
+  background: #fff;
+  padding: 0.3rem 0.8rem;
+  border-radius: 8px;
+  margin-left: 1rem;
+}
+
+/* Overlay Section */
+.overlay {
+  position: absolute;
+  inset: 0;
+  background: rgba(255, 254, 254, 0.45);
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+  justify-content: center;
+  text-align: center;
+  padding: 2rem;
+}
+
+.overlay h1 {
+  font-size: 2.6rem;
+  margin-bottom: 0.6rem;
+}
+
+.overlay p {
+  font-size: 1.2rem;
+  margin-bottom: 1.5rem;
+}
+
+/* Buttons */
+.options {
+  display: flex;
+  gap: 1rem;
+  flex-wrap: wrap;
+  justify-content: center;
+}
+
+.btn {
+  padding: 0.9rem 1.5rem;
+  font-size: 1.1rem;
+  font-weight: 700;
+  border-radius: 14px;
+  text-decoration: none;
+  transition: transform 0.2s ease, box-shadow 0.2s ease;
+  box-shadow: 0 4px 12px rgba(0, 0, 0, 0.25);
+  display: inline-block;
+}
+
+.btn:hover {
+  transform: translateY(-3px);
+}
+
+.btn:active {
+  transform: translateY(0);
+}
+
+.seeker {
+  background: #98ff98; /* mint */
+  color: #064d06;
+}
+
+.provider {
+ background: #98ff98; /* mint */
+  color: #064d06;
+}
+
+/* Responsive */
+@media (max-width: 768px) {
+  header {
+    flex-direction: column;
+    text-align: center;
+    padding: 1rem;
+  }
+
+  .tagline {
+    margin-left: 0;
+    margin-top: 0.5rem;
+  }
+
+  .overlay h1 {
+    font-size: 2rem;
+  }
+
+  .overlay p {
+    font-size: 1rem;
+  }
+
+  .btn {
+    font-size: 1rem;
+    padding: 0.8rem 1.2rem;
+  }
+}
+
+
+
+
+
+
+
+
+
+

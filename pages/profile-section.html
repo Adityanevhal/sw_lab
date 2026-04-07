@@ -1,0 +1,134 @@
+<html lang="en">
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <title>Profile Section | LocoLink</title>
+  <link rel="stylesheet" href="https://fonts.googleapis.com/css2?family=Material+Symbols+Outlined" />
+  <style>
+    body {
+      margin: 0;
+      font-family: Arial, sans-serif;
+      background-image: url('../assets/images/1755863042727.jpg'); /* same background */
+      background-size: cover;
+      background-position: center;
+      display: flex;
+      justify-content: center;
+      align-items: center;
+      min-height: 100vh;
+    }
+
+    .profile-container {
+      background: rgba(255,255,255,0.95);
+      padding: 30px;
+      border-radius: 20px;
+      max-width: 450px;
+      width: 90%;
+      box-shadow: 0 6px 12px rgba(0,0,0,0.25);
+      text-align: center;
+      position: relative;
+    }
+
+    /* Logo on top */
+    .logo {
+      width: 100px;
+      margin-bottom: 15px;
+    }
+
+    h2 {
+      margin-bottom: 15px;
+      color: #333;
+    }
+
+    .profile-pic {
+      width: 120px;
+      height: 120px;
+      border-radius: 50%;
+      overflow: hidden;
+      margin: 0 auto 15px;
+      border: 3px solid #007BFF;
+    }
+
+    .profile-pic img {
+      width: 100%;
+      height: 100%;
+      object-fit: cover;
+    }
+
+    .info {
+      text-align: left;
+      margin: 15px 0;
+      font-size: 15px;
+      line-height: 1.6;
+      color: #444;
+    }
+
+    .info strong {
+      color: #000;
+    }
+
+    .edit-btn {
+      margin-top: 20px;
+      padding: 10px;
+      background: #007BFF;
+      color: white;
+      border: none;
+      border-radius: 8px;
+      font-size: 16px;
+      cursor: pointer;
+      width: 100%;
+    }
+
+    .edit-btn:hover {
+      background: #0056b3;
+    }
+  </style>
+</head>
+<body>
+
+  <div class="profile-container">
+    <!-- Logo -->
+    <img src="../assets/images/LocoLinkLogo.jpg" alt="LocoLink Logo" class="logo"> <!-- same logo as other pages -->
+
+    <h2>Your Profile</h2>
+
+    <!-- Profile Picture -->
+    <div class="profile-pic">
+      <img src="../assets/images/1_1.jpg" alt="Profile Picture" id="profileImage">
+    </div>
+
+    <!-- Profile Info -->
+    <div class="info">
+      <p><strong>Name:</strong> <span id="name"></span></p>
+      <p><strong>Username:</strong> <span id="username"></span></p>
+      <p><strong>Password:</strong> <span id="password"></span></p>
+      <p><strong>College:</strong> <span id="college"></span></p>
+      <p><strong>Address:</strong> <span id="address"></span></p>
+      <p><strong>Contact:</strong> <span id="contact"></span></p>
+    </div>
+
+    <button class="edit-btn" onclick="window.location.href='edit-profile.html'">Edit Profile</button>
+  </div>
+
+  <script>
+    // Load profile from localStorage
+    window.onload = function() {
+      const savedProfile = JSON.parse(localStorage.getItem("profileData"));
+      const savedImg = localStorage.getItem("profileImage");
+
+      if (savedProfile) {
+        document.getElementById("name").textContent = savedProfile.name || "Not set";
+        document.getElementById("username").textContent = savedProfile.username || "Not set";
+        document.getElementById("password").textContent = savedProfile.password || "Not set";
+        document.getElementById("college").textContent = savedProfile.college || "Not set";
+        document.getElementById("address").textContent = savedProfile.address || "Not set";
+        document.getElementById("contact").textContent = savedProfile.contact || "Not set";
+      }
+
+      if (savedImg) {
+        document.getElementById("profileImage").src = savedImg;
+      }
+    };
+  </script>
+
+</body>
+</html>

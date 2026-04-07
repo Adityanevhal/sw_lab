@@ -1,0 +1,82 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8">
+  <title>Signup Page</title>
+  <style>
+    body {
+      font-family: Arial, sans-serif;
+      background: url('../assets/images/1755863042727.jpg') no-repeat center center/cover;
+      display: flex;
+      justify-content: center;
+      align-items: center;
+      height: 100vh;
+    }
+    .container {
+      background: rgba(255,255,255,0.9);
+      padding: 20px;
+      border-radius: 10px;
+      width: 350px;
+      text-align: center;
+    }
+    input, select, button {
+      width: 90%;
+      padding: 10px;
+      margin: 10px 0;
+      border: 1px solid #ccc;
+      border-radius: 5px;
+    }
+    button {
+      background: #007bff;
+      color: white;
+      font-weight: bold;
+      cursor: pointer;
+    }
+    button:hover {
+      background: #0056b3;
+    }
+  </style>
+</head>
+<body>
+  <div class="container">
+    <h2>Signup</h2>
+    <input type="text" id="name" placeholder="Full Name" required>
+    <input type="text" id="username" placeholder="Username" required>
+    <input type="email" id="email" placeholder="Email Address" required>
+    <input type="password" id="password" placeholder="Password" required>
+    <input type="number" id="age" placeholder="Age" required>
+    <input type="text" id="address" placeholder="Address" required>
+    <button onclick="signup()">Sign Up</button>
+  </div>
+  <script>
+    const getStudents = () => JSON.parse(localStorage.getItem("studentUsers") || "[]");
+    const saveStudents = (users) => localStorage.setItem("studentUsers", JSON.stringify(users));
+
+    async function signup() {
+      const name = document.getElementById("name").value.trim();
+      const username = document.getElementById("username").value.trim();
+      const email = document.getElementById("email").value.trim().toLowerCase();
+      const password = document.getElementById("password").value;
+      const age = document.getElementById("age").value.trim();
+      const address = document.getElementById("address").value.trim();
+
+      const users = getStudents();
+      if (users.some((user) => user.email === email)) {
+        alert("Email already registered. Please log in.");
+        return;
+      }
+
+      const newUser = { name, username, email, password, age, address };
+      users.push(newUser);
+      saveStudents(users);
+      localStorage.setItem("profileData", JSON.stringify({ name, username, email, age, address }));
+
+      alert("Signup successful! Redirecting to login...");
+      window.location.href = "Student-login.html";
+    }
+    window.signup = signup;
+  </script>
+</body>
+
+</html>
+

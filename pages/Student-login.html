@@ -1,0 +1,70 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8">
+  <title>Login Page</title>
+  <style>
+    body {
+      font-family: Arial, sans-serif;
+      background: url('../assets/images/1755863042727.jpg') no-repeat center center/cover;
+      display: flex;
+      justify-content: center;
+      align-items: center;
+      height: 100vh;
+    }
+    .container {
+      background: rgba(255,255,255,0.9);
+      padding: 20px;
+      border-radius: 10px;
+      width: 350px;
+      text-align: center;
+    }
+    input, button {
+      width: 90%;
+      padding: 10px;
+      margin: 10px 0;
+      border: 1px solid #ccc;
+      border-radius: 5px;
+    }
+    button {
+      background: #28a745;
+      color: white;
+      font-weight: bold;
+      cursor: pointer;
+    }
+    button:hover {
+      background: #1e7e34;
+    }
+  </style>
+</head>
+<body>
+  <div class="container">
+    <h2>Login</h2>
+    <input type="email" id="email" placeholder="Email Address" required>
+    <input type="password" id="password" placeholder="Password" required>
+    <button onclick="login()">Login</button>
+    <p>Don’t have an account? <a href="Student-signup.html">Sign Up</a></p>
+  </div>
+  <script>
+    const getStudents = () => JSON.parse(localStorage.getItem("studentUsers") || "[]");
+
+    async function login() {
+      const email = document.getElementById("email").value.trim().toLowerCase();
+      const password = document.getElementById("password").value;
+      const users = getStudents();
+      const user = users.find((u) => u.email === email && u.password === password);
+
+      if (!user) {
+        alert("Invalid email or password.");
+        return;
+      }
+
+      localStorage.setItem("loggedInStudent", JSON.stringify({ email: user.email, name: user.name, username: user.username }));
+      localStorage.setItem("profileData", JSON.stringify({ name: user.name, username: user.username, email: user.email, age: user.age, address: user.address, contactno: user.contactno }));
+      window.location.href = "Student-section.html";
+    }
+    window.login = login;
+  </script>
+</body>
+
+</html>

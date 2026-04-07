@@ -1,0 +1,72 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8">
+  <title>Application Sent</title>
+  <style>
+    body {
+      display: flex;
+      justify-content: center;
+      align-items: center;
+      height: 100vh;
+      font-family: Arial, sans-serif;
+      background: url('../assets/images/1755863042727.jpg') no-repeat center center/cover;
+      margin: 0;
+      color: #222;
+    }
+    .message-box {
+      text-align: center;
+      background: rgba(255, 255, 255, 0.9);
+      padding: 40px;
+      border-radius: 12px;
+      box-shadow: 0 4px 15px rgba(0,0,0,0.2);
+      animation: fadeIn 1s ease-in-out;
+      max-width: 500px;
+      width: 90%;
+    }
+    .logo {
+      width: 150px;
+      margin-bottom: 20px;
+    }
+    h1 {
+      font-size: 28px;
+      margin-bottom: 10px;
+      color: #2b7a2b;
+    }
+    p {
+      font-size: 18px;
+      margin-top: 0;
+    }
+    .btn {
+      margin-top: 20px;
+      background-color: #2b7a2b;
+      color: white;
+      padding: 10px 20px;
+      border-radius: 8px;
+      border: none;
+      cursor: pointer;
+      font-size: 16px;
+      transition: background 0.3s;
+      text-decoration: none;
+      display: inline-block;
+    }
+    .btn:hover {
+      background-color: #1f5c1f;
+    }
+    @keyframes fadeIn {
+      from { opacity: 0; transform: scale(0.95); }
+      to { opacity: 1; transform: scale(1); }
+    }
+  </style>
+</head>
+<body>
+  <div class="message-box">
+    <img src="iLocoLinkLogo.jpg" alt="LocoLink Logo" class="logo">
+    <h1>Your Application has been sent ✅</h1>
+    <p>Please wait for approval.</p>
+    <p>Thank you !!</p>
+    <a href="../index.html" class="btn">Back to Home</a>
+  </div>
+</body>
+</html>
+

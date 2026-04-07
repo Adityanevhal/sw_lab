@@ -1,0 +1,337 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <title>Provider Dashboard - LocoLink</title>
+  <style>
+   * {
+      margin: 0;
+      padding: 0;
+      box-sizing: border-box;
+      font-family: "Segoe UI", sans-serif;
+    }
+
+    body {
+      background: #fafafa;
+      color: #222;
+      min-height: 100vh;
+    }
+
+   
+    .navbar {
+      background: rgba(255, 255, 255, 0.9);
+      display: flex;
+      align-items: center;
+      justify-content: space-between;
+      padding: 0.8rem 2rem;
+      box-shadow: 0 3px 8px rgba(0, 0, 0, 0.1);
+      position: sticky;
+      top: 0;
+      z-index: 100;
+      backdrop-filter: blur(6px);
+    }
+
+    .logo {
+      font-size: 1.5rem;
+      font-weight: 800;
+      color: #14721a;
+    }
+    nav img{
+      height: 60px;
+      width: auto;
+      border: none;
+    }
+
+    .nav-links a {
+      text-decoration: none;
+      margin-left: 1.5rem;
+      font-weight: 600;
+      color: #333;
+      transition: color 0.3s ease;
+    }
+
+    .nav-links a:hover {
+      color: #ff7f50;
+    }
+
+   
+    .container {
+      display: grid;
+      grid-template-columns: 2fr 1fr;
+      gap: 2rem;
+      padding: 2rem;
+    }
+
+    .card {
+      background: #fff;
+      border-radius: 14px;
+      padding: 1.5rem;
+      box-shadow: 0 3px 10px rgba(0,0,0,0.08);
+    }
+
+    h2 {
+      margin-bottom: 1rem;
+      font-size: 1.4rem;
+      color: #14721a;
+    }
+
+  
+    form {
+      display: flex;
+      flex-direction: column;
+      gap: 1rem;
+    }
+
+    .form-group label {
+      font-weight: 600;
+      display: block;
+      margin-bottom: 0.3rem;
+    }
+
+    .form-group input,
+    textarea,
+    select {
+      width: 100%;
+      padding: 0.7rem;
+      border: 1px solid #ccc;
+      border-radius: 8px;
+      font-size: 0.95rem;
+    }
+
+    textarea {
+      resize: none;
+      height: 80px;
+    }
+
+   
+    .slot {
+      display: grid;
+      grid-template-columns: 1fr 1fr 1fr 1fr 1fr auto;
+      gap: 0.6rem;
+      align-items: center;
+    }
+
+    .slot input,
+    .slot select {
+      padding: 0.5rem;
+      font-size: 0.85rem;
+    }
+
+    .remove-btn {
+      background: #ff7f50;
+      color: #fff;
+      border: none;
+      padding: 0.5rem 0.8rem;
+      border-radius: 8px;
+      cursor: pointer;
+      transition: background 0.3s ease;
+    }
+
+    .remove-btn:hover {
+      background: #e5673f;
+    }
+
+    
+    .form-actions {
+      display: flex;
+      justify-content: flex-end;
+      margin-top: 1rem;
+    }
+
+    .publish-btn {
+      background: #14721a;
+      color: #fff;
+      border: none;
+      padding: 0.7rem 1.4rem;
+      border-radius: 10px;
+      font-weight: 600;
+      cursor: pointer;
+      transition: background 0.3s ease;
+    }
+
+    .publish-btn:hover {
+      background: #0f5a14;
+    }
+
+    /* ===== Posted Jobs ===== */
+    .posted-jobs {
+      display: flex;
+      flex-direction: column;
+      gap: 1rem;
+    }
+
+    .job-card {
+      border: 1px solid #ddd;
+      padding: 1rem;
+      border-radius: 10px;
+      background: #f9f9f9;
+    }
+
+    .job-card button {
+      margin-top: 10px;
+      background: #ff7f50;
+      color: #fff;
+      border: none;
+      padding: 5px 10px;
+      border-radius: 6px;
+      cursor: pointer;
+    }
+
+    .job-card button:hover {
+      background: #e5673f;
+    }
+
+    .no-jobs {
+      color: #666;
+      font-style: italic;
+    }
+
+    @media (max-width: 992px) {
+      .container {
+        grid-template-columns: 1fr;
+      }
+    }
+  </style>
+</head>
+<body style="background-image: url('../assets/images/1755863042727.jpg'); background-size:cover;">
+  <!-- Navbar -->
+  <nav class="navbar">
+    <img src="../assets/images/LocoLinkLogo.jpg" alt="locolink Logo">
+    <div class="nav-links">
+      <a href="Student-section.html">Find Jobs</a>
+      <a href="../index.html">Logout</a>
+    </div>
+  </nav>
+
+  <div class="container">
+    <!-- Post Job -->
+    <section class="card post-job">
+      <h2>Post a Job</h2>
+      <form id="jobForm">
+        <div class="form-group">
+          <label>Business Name</label>
+          <input type="text" id="businessName" placeholder="Sai Mart" required>
+        </div>
+
+        <div class="form-group">
+          <label>Location</label>
+          <input type="text" id="location" placeholder="Near ABC Circle" required>
+        </div>
+
+        <div class="form-group">
+          <label>Job Title</label>
+          <input type="text" id="jobTitle" placeholder="Evening Cashier" required>
+        </div>
+
+        <div class="form-group">
+          <label>Description</label>
+          <textarea id="description" placeholder="Billing counter, cash handling, customer help" required></textarea>
+        </div>
+
+        <h3>Required Slot</h3>
+        <div class="slot">
+          <select id="day">
+            <option>Mon</option>
+            <option>Tue</option>
+            <option>Wed</option>
+            <option>Thu</option>
+            <option>Fri</option>
+            <option>Sat</option>
+            <option>Sun</option>
+          </select>
+          <input type="time" id="startTime" value="16:00">
+          <input type="time" id="endTime" value="20:00">
+          <input type="number" id="pay" placeholder="Pay (₹/hr)">
+          <input type="number" id="distance" placeholder="Distance (km)">
+          <input type="number" id="seats" placeholder="Seats">
+        </div>
+
+        <div class="form-actions">
+          <button type="submit" class="publish-btn">Publish Job</button>
+        </div>
+      </form>
+    </section>
+
+    <!-- Posted Jobs -->
+    <section class="card posted-jobs">
+      <h2>Your Posted Jobs</h2>
+      <div id="jobList">
+        <p class="no-jobs">No jobs yet. Post your first opening!</p>
+      </div>
+    </section>
+  </div>
+
+  <script>
+    const form = document.getElementById("jobForm");
+    const jobList = document.getElementById("jobList");
+
+    // Save job to localStorage
+    function saveJob(job) {
+      let jobs = JSON.parse(localStorage.getItem("jobs")) || [];
+      jobs.push(job);
+      localStorage.setItem("jobs", JSON.stringify(jobs));
+    }
+
+    // Load jobs from localStorage
+    function loadJobs() {
+      jobList.innerHTML = "";
+      let jobs = JSON.parse(localStorage.getItem("jobs")) || [];
+
+      if (jobs.length === 0) {
+        jobList.innerHTML = `<p class="no-jobs">No jobs yet. Post your first opening!</p>`;
+        return;
+      }
+
+      jobs.forEach((job, index) => {
+        const jobCard = document.createElement("div");
+        jobCard.classList.add("job-card");
+        jobCard.innerHTML = `
+          <h3>${job.title} @ ${job.business}</h3>
+          <p><strong>Location:</strong> ${job.location}</p>
+          <p><strong>Description:</strong> ${job.desc}</p>
+          <p><strong>Slot:</strong> ${job.day}, ${job.start} - ${job.end}</p>
+          <p><strong>Pay:</strong> ₹${job.pay}/hr | <strong>Distance:</strong> ${job.distance} km | <strong>Seats:</strong> ${job.seats}</p>
+          <button onclick="deleteJob(${index})">Delete</button>
+        `;
+        jobList.appendChild(jobCard);
+      });
+    }
+
+    // Delete job
+    function deleteJob(index) {
+      let jobs = JSON.parse(localStorage.getItem("jobs")) || [];
+      jobs.splice(index, 1);
+      localStorage.setItem("jobs", JSON.stringify(jobs));
+      loadJobs();
+    }
+    window.deleteJob = deleteJob;
+
+    // Form submit
+    form.addEventListener("submit", function(e) {
+      e.preventDefault();
+
+      let job = {
+        business: document.getElementById("businessName").value,
+        location: document.getElementById("location").value,
+        title: document.getElementById("jobTitle").value,
+        desc: document.getElementById("description").value,
+        day: document.getElementById("day").value,
+        start: document.getElementById("startTime").value,
+        end: document.getElementById("endTime").value,
+        pay: document.getElementById("pay").value,
+        distance: document.getElementById("distance").value,
+        seats: document.getElementById("seats").value
+      };
+
+      saveJob(job);
+      loadJobs();
+      form.reset();
+    });
+
+    // Load jobs on page load
+    window.onload = loadJobs;
+  </script>
+</body>
+</html>
+
